@@ -1,0 +1,575 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════
+   Sri Lankan Omi — Design System
+   Premium dark gaming aesthetic: emerald felt + warm ivory cards
+   ═══════════════════════════════════════════════════════════════════ */
+
+@theme inline {
+  /* Core palette */
+  --color-felt-dark:    #08130F;
+  --color-felt:         #0D1C16;
+  --color-felt-mid:     #10261D;
+  --color-felt-light:   #12352A;
+  --color-felt-rim:     #060e0a;
+  
+  --color-table-center: #1B4A38;
+  --color-table-rim:    #174333;
+
+  --color-gold:         #C9A45C;
+  --color-gold-light:   #E1C27A;
+  --color-gold-dark:    #A9823D;
+  --color-gold-glow:    #C9A45C33;
+
+  --color-card-bg:      #F7F2E7;
+  --color-card-border:  #E8E0D0;
+  --color-card-shadow:  rgba(0,0,0,0.6);
+
+  --color-red:          #B84A4A;
+  --color-black:        #202522;
+  
+  --color-text-main:    #F5F1E8;
+  --color-text-muted:   #A9B0AA;
+
+  --color-team0:        #C9A45C; /* subtle gold marker */
+  --color-team1:        #B84A4A; /* deep red accent marker */
+
+  --color-success:      #27ae60;
+  --color-danger:       #B84A4A;
+
+  /* Typography */
+  --font-display:       var(--font-sinhala-serif), 'Georgia', serif;
+  --font-body:          var(--font-sinhala-sans), var(--font-inter), system-ui, sans-serif;
+  --font-sinhala:       var(--font-sinhala-sans), var(--font-inter), system-ui, sans-serif;
+
+  /* Spacing */
+  --radius-card:        8px;
+  --radius-sm:          6px;
+  --radius-md:          12px;
+  --radius-lg:          20px;
+  --radius-xl:          28px;
+
+  /* Shadows */
+  --shadow-card:        0 4px 16px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-gold:        0 0 20px rgba(201,164,92,0.3);
+  --shadow-felt:        inset 0 0 60px rgba(0,0,0,0.4);
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100%;
+  background-color: var(--color-felt-dark);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ─── Felt Table Texture ─────────────────────────────────────────── */
+
+.felt-surface {
+  background-color: var(--color-felt);
+  background-image:
+    radial-gradient(ellipse at center, var(--color-table-center) 0%, var(--color-felt-light) 40%, var(--color-felt) 70%, var(--color-felt-rim) 100%);
+  box-shadow: var(--shadow-felt);
+}
+
+.felt-texture {
+  background-color: var(--color-felt);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%2308130f'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%2312352a' opacity='0.3'/%3E%3Ccircle cx='3' cy='3' r='0.5' fill='%2312352a' opacity='0.3'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at center, var(--color-table-center) 0%, var(--color-felt-light) 40%, var(--color-felt) 70%, var(--color-felt-rim) 100%);
+}
+
+.oval-table {
+  background-color: var(--color-felt);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%2308130f'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%2312352a' opacity='0.3'/%3E%3Ccircle cx='3' cy='3' r='0.5' fill='%2312352a' opacity='0.3'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at center, var(--color-table-center) 0%, var(--color-table-rim) 50%, var(--color-felt) 100%);
+  border-radius: 50% / 40%;
+  border: 1px solid rgba(255,255,255,0.05); /* very subtle rim, no thick wood */
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.9), 0 20px 60px rgba(0,0,0,0.8);
+  position: relative;
+  width: 90vw;
+  height: 70vh;
+  max-width: 1200px;
+  max-height: 800px;
+  margin: auto;
+}
+
+/* ─── Gold Accent Lines ──────────────────────────────────────────── */
+
+.gold-border {
+  border: 1px solid var(--color-gold-dark);
+}
+
+.gold-border-top {
+  border-top: 1px solid var(--color-gold-dark);
+}
+
+.gold-glow {
+  box-shadow: 0 0 16px var(--color-gold-glow), 0 0 32px var(--color-gold-glow);
+}
+
+.gold-text {
+  color: var(--color-gold);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold), var(--color-gold-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Card Component ─────────────────────────────────────────────── */
+
+.playing-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.15s ease;
+  will-change: transform;
+  user-select: none;
+}
+
+.playing-card:hover {
+  box-shadow:
+    0 8px 28px rgba(0,0,0,0.6),
+    0 2px 8px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(201,168,76,0.3);
+}
+
+.playing-card.selected {
+  transform: translateY(-24px) scale(1.08);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.8),
+    0 0 0 2px var(--color-gold),
+    0 0 24px var(--color-gold-glow);
+  z-index: 100 !important;
+}
+
+.playing-card.legal {
+  cursor: pointer;
+}
+
+.playing-card.illegal {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+}
+
+.playing-card.face-down {
+  background: linear-gradient(135deg, #1a3d20 0%, #0d1f0f 100%);
+  border-color: var(--color-gold-dark);
+  cursor: default;
+}
+
+.card-suit-red { color: var(--color-red); }
+.card-suit-black { color: var(--color-black); }
+
+/* ─── Katakola Token ─────────────────────────────────────────────── */
+
+.katakola-token {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  border: 2px solid var(--color-gold-dark);
+  background: radial-gradient(circle at 35% 35%, var(--color-gold-light), var(--color-gold), var(--color-gold-dark));
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Avatars ────────────────────────────────────────────────────── */
+.avatar-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold-dark);
+  background: linear-gradient(135deg, #1f2b23, #111a14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 4px 12px rgba(0,0,0,0.5);
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-gold);
+  font-size: 1.2rem;
+}
+
+.avatar-ring.active-turn {
+  border-color: var(--color-gold-light);
+  box-shadow: 0 0 16px var(--color-gold-glow), inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.connection-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #111a14;
+}
+.connection-dot.online { background-color: var(--color-success); }
+.connection-dot.offline { background-color: var(--color-danger); }
+
+.katakola-token:hover {
+  transform: scale(1.15);
+}
+
+/* ─── Button Variants ────────────────────────────────────────────── */
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  color: var(--color-felt-dark);
+  font-weight: 700;
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.4), 0 1px 3px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+  border-radius: inherit;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,168,76,0.5), 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold-dark);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(201,168,76,0.1);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(231,76,60,0.3);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(231,76,60,0.4);
+}
+
+/* ─── Input ──────────────────────────────────────────────────────── */
+
+.input-field {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius-sm);
+  color: #f0ead8;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  width: 100%;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: rgba(240,234,216,0.35);
+}
+
+.input-field:focus {
+  border-color: var(--color-gold);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+}
+
+/* ─── Glass Panel ────────────────────────────────────────────────── */
+
+.glass-panel {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: var(--radius-xl);
+}
+
+.glass-panel-dark {
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201,168,76,0.1);
+  border-radius: var(--radius-xl);
+}
+
+/* ─── Suit Symbols ───────────────────────────────────────────────── */
+
+.suit-spades   { color: #1a1a2e; }
+.suit-clubs    { color: #1a1a2e; }
+.suit-hearts   { color: #c0392b; }
+.suit-diamonds { color: #c0392b; }
+
+/* ─── Animations ─────────────────────────────────────────────────── */
+
+@keyframes deal-card {
+  from {
+    transform: translateY(-80px) rotate(-8deg) scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flip-card {
+  0%   { transform: rotateY(0deg); }
+  50%  { transform: rotateY(90deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+@keyframes token-transfer {
+  0%   { transform: translateX(0) scale(1); }
+  40%  { transform: translateX(var(--token-dx, 40px)) translateY(-20px) scale(1.2); }
+  100% { transform: translateX(var(--token-dx, 40px)) scale(1); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--color-gold-glow); }
+  50%       { box-shadow: 0 0 24px var(--color-gold-glow), 0 0 48px var(--color-gold-glow); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-deal { animation: deal-card 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.animate-fade-in { animation: fade-in 0.35s ease both; }
+.animate-scale-in { animation: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-felt-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 3px;
+}
+
+/* ─── Game Table Layout ──────────────────────────────────────────── */
+
+.game-container {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-felt-dark);
+}
+
+/* Placement around the oval table */
+.seat-top {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+.seat-left {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 10;
+}
+.seat-right {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  z-index: 10;
+}
+.seat-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 50; /* Above table */
+}
+
+/* ─── Mobile Media Queries ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .oval-table {
+    width: 95vw;
+    height: 60vh;
+    border-radius: 40px; /* Switch to rounded rect on small screens for space */
+    border-width: 8px;
+    margin-top: -10vh; /* Shift up to leave room for hand */
+  }
+  .seat-left { left: 5px; }
+  .seat-right { right: 5px; }
+  .seat-top { top: -20px; }
+}
+
+/* ─── Utility ────────────────────────────────────────────────────── */
+
+.font-display { font-family: var(--font-display); }
+.text-gold    { color: var(--color-gold); }
+.text-team0   { color: var(--color-team0); }
+.text-team1   { color: var(--color-team1); }
+
+/* ─── Card Engine ────────────────────────────────────────────────── */
+
+/* CSS hover lift for PlayerHand — supplement to Framer Motion */
+.card-hoverable:hover {
+  transform: translateY(-14px) scale(1.05) !important;
+  z-index:   50 !important;
+  transition: transform 0.16s ease, box-shadow 0.16s ease !important;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.65),
+              0 2px 8px rgba(0,0,0,0.35) !important;
+}
+
+/* Card paper texture — subtle grain overlay */
+.card-paper-texture {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E"),
+    #faf8f4;
+}
+
+/* Opponent hand — cards rotated to face their seat */
+.opponent-hand-top   { transform: rotate(180deg); }
+.opponent-hand-left  { transform: rotate(90deg);  }
+.opponent-hand-right { transform: rotate(-90deg); }
+
+/* Deal landing bounce keyframe */
+@keyframes card-land {
+  0%   { transform: scale(0.96) translateY(4px); }
+  55%  { transform: scale(1.03) translateY(-2px); }
+  80%  { transform: scale(0.99) translateY(1px); }
+  100% { transform: scale(1)    translateY(0);   }
+}
+.card-land {
+  animation: card-land 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Trick card impact micro-animation */
+@keyframes card-impact {
+  0%   { transform: scale(1);    }
+  35%  { transform: scale(0.95); }
+  100% { transform: scale(0.97); }
+}
+.card-impact {
+  animation: card-impact 0.16s ease-out both;
+}
+
+/* Winner card gold pulse */
+@keyframes winner-glow {
+  0%, 100% { box-shadow: 0 0 0 2px #c9a84c, 0 0 16px rgba(201,168,76,0.4); }
+  50%       { box-shadow: 0 0 0 2px #e4c46b, 0 0 32px rgba(201,168,76,0.65); }
+}
+.card-winner-glow {
+  animation: winner-glow 1.2s ease-in-out infinite;
+}
+
+/* ─── Reduced Motion Overrides ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .playing-card,
+  .card-hoverable,
+  [class*='card-'] {
+    animation:  none !important;
+    transition: opacity 0.1s ease !important;
+  }
+  .card-hoverable:hover {
+    transform: none !important;
+  }
+}
+
