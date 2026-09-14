@@ -598,7 +598,7 @@ export default function GamePage() {
       )}
       {gameState?.roundResult && (
         <KatakolaTransferAnimation
-          result={gameState.roundResult}
+          transaction={gameState.roundResult.transaction}
           myTeam={myPosition !== null ? (myPosition % 2 as 0|1) : null}
         />
       )}
